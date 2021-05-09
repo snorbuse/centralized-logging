@@ -25,31 +25,34 @@
     regex: ^network.host
     line: "network.host: 0.0.0.0"
     path: /etc/elasticsearch/elasticsearch.yml
+  notify:
+    - Restart Elasticsearch
 
 - name: Set cluster name
   lineinfile:
     regex: ^cluster.name
     line: "cluster.name: logging-cluster"
     path: /etc/elasticsearch/elasticsearch.yml
+  notify:
+    - Restart Elasticsearch
 
 - name: Set node name
   lineinfile:
     regex: ^node.name
     line: "node.name: logging-cluster-node01"
     path: /etc/elasticsearch/elasticsearch.yml
+  notify:
+    - Restart Elasticsearch
 
 - name: Set initial master node(s)
   lineinfile:
     regex: ^cluster.initial_master_nodes
     line: "cluster.initial_master_nodes: [logging-cluster-node01]"
     path: /etc/elasticsearch/elasticsearch.yml
+  notify:
+    - Restart Elasticsearch
  
 - name: Enable Elasticsearch at startup
   systemd:
     name: elasticsearch
     enabled: yes
-
-- name: Restart Elasticsearch
-  systemd:
-    name: elasticsearch
-    state: restarted
