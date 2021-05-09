@@ -1,0 +1,13 @@
+all:
+  vars:
+    ansible_user: ubuntu
+    ansible_password: ubuntu
+  children:
+    logservers:
+      hosts:
+        logserver.snorbu.se:
+          ansible_host: 192.168.0.53
+    appservers:
+      hosts:
+        my-app.snorbu.se:
+          ansible_host: 192.168.0.1

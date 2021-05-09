@@ -1,0 +1,8 @@
+- name: Install centrialized log server
+  hosts: logservers
+  become: yes
+  become_method: sudo
+  roles:
+    - elasticsearch
+    - kibana
+  
