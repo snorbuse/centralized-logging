@@ -6,8 +6,8 @@ all:
     logservers:
       hosts:
         logserver.snorbu.se:
-          ansible_host: 192.168.0.53
+          ansible_host: 192.168.50.106
     appservers:
       hosts:
         my-app.snorbu.se:
-          ansible_host: 192.168.0.90
+          ansible_host: 192.168.50.195
