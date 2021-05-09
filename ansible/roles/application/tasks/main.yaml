@@ -3,16 +3,33 @@
     path: /etc/docker/compose/myapp
     state: directory
 
+- name: Copy Demo-application Docker image
+  copy:
+    src: snorbu.se-demo-application-1.1.tar
+    dest: /opt/snorbu.se-demo-application-1.1.tar
+
+- name: Load Demo-application into Docker
+  docker_image:
+    name: snorbu.se/demo-application
+    tag: 1.1
+    source: load
+    state: present
+    load_path: /opt/snorbu.se-demo-application-1.1.tar
+
 - name: Install Docker-compose configuration
   template:
     src: docker-compose.yaml
     dest: /etc/docker/compose/myapp/docker-compose.yaml
+  notify:
+    - Restart MyApp
 
 
 - name: Create systemd unit
   template:
     src: myapp.service
     dest: /etc/systemd/system/myapp.service
+  notify:
+    - Restart MyApp
 
 - name: Reload Systemd configuration
   systemd:

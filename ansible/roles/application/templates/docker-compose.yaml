@@ -4,4 +4,9 @@ services:
     image: httpd:2.4
     ports: 
       - 80:80
-    
+  app:
+    image: snorbu.se/demo-application:1.1
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE=json-logger
