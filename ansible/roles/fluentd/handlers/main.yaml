@@ -1,0 +1,9 @@
+- name: Restart Docker
+  systemd:
+    name: docker
+    state: restarted
+
+- name: Restart MyApp
+  systemd:
+    name: myapp
+    state: restarted

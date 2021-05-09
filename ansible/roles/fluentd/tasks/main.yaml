@@ -1,0 +1,32 @@
+- name: Add Fluentd apt-key
+  apt_key:
+    url: https://packages.treasuredata.com/GPG-KEY-td-agent
+    state: present
+
+- name: Add Fluentd repo
+  apt_repository:
+    repo: deb http://packages.treasuredata.com/4/ubuntu/focal/ focal contrib
+    state: present
+
+- name: Install Fluentd
+  apt:
+    name: td-agent
+    state: present
+
+- name: Start Fluentd at startup
+  systemd:
+    name: td-agent
+    enabled: yes
+
+- name: Restart Fluentd
+  systemd:
+    name: td-agent
+    state: restarted
+
+- name: Make Docker log to Fluentd
+  copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+  notify: 
+    - Restart Docker
+    - Restart MyApp

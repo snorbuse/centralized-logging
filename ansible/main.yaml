@@ -20,4 +20,5 @@
   roles:
     - docker
     - application
+    - fluentd
   
