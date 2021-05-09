@@ -13,6 +13,13 @@
     name: td-agent
     state: present
 
+- name: Configure Fluentd
+  template:
+    src: td-agent.conf
+    dest: /etc/td-agent/td-agent.conf
+  notify:
+    - Restart Fluentd
+
 - name: Start Fluentd at startup
   systemd:
     name: td-agent
