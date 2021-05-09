@@ -11,7 +11,7 @@
 - name: Load Demo-application into Docker
   docker_image:
     name: snorbu.se/demo-application
-    tag: 1.1
+    tag: '1.1'
     source: load
     state: present
     load_path: /opt/snorbu.se-demo-application-1.1.tar
