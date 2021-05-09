@@ -1,3 +1,10 @@
+#- name: Update all servers
+#  hosts: all
+#  become: yes
+#  become_method: sudo
+#  roles:
+#    - common
+
 - name: Install centrialized log server
   hosts: logservers
   become: yes
@@ -5,4 +12,12 @@
   roles:
     - elasticsearch
     - kibana
+  
+- name: Install application server
+  hosts: appservers
+  become: yes
+  become_method: sudo
+  roles:
+    - docker
+    - application
   

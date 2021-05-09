@@ -1,0 +1,29 @@
+- name: Create config directory
+  file:
+    path: /etc/docker/compose/myapp
+    state: directory
+
+- name: Install Docker-compose configuration
+  template:
+    src: docker-compose.yaml
+    dest: /etc/docker/compose/myapp/docker-compose.yaml
+
+
+- name: Create systemd unit
+  template:
+    src: myapp.service
+    dest: /etc/systemd/system/myapp.service
+
+- name: Reload Systemd configuration
+  systemd:
+    daemon_reload: yes
+
+- name: Enable MyApp at startup
+  systemd:
+    name: myapp
+    enabled: yes
+
+- name: Start application
+  systemd:
+    name: myapp
+    state: started

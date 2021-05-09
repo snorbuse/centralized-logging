@@ -10,4 +10,4 @@ all:
     appservers:
       hosts:
         my-app.snorbu.se:
-          ansible_host: 192.168.0.1
+          ansible_host: 192.168.0.90
