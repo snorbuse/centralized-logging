@@ -10,7 +10,7 @@
     line: "server.host: \"{{ ansible_default_ipv4.address }}\""
     path: /etc/kibana/kibana.yml
   notify:
-    - Restart Kiban
+    - Restart Kibana
 
 - name: Set URI to Elasticsearch
   lineinfile:
@@ -18,7 +18,7 @@
     line: "elasticsearch.hosts: [\"http://localhost:9200\"]"
     path: /etc/kibana/kibana.yml
   notify:
-    - Restart Kiban
+    - Restart Kibana
 
 - name: Enable Kibana at startup
   systemd:
