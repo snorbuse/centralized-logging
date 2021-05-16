@@ -20,6 +20,13 @@
   notify:
     - Restart Logstash
 
+- name: Install Docker configuration
+  template: 
+    src: docker.conf
+    dest: /etc/logstash/conf.d/docker.conf
+  notify:
+    - Restart Logstash
+-
 - name: Start Logstash at startup
   systemd:
     name: logstash

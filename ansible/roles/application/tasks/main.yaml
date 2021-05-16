@@ -5,16 +5,16 @@
 
 - name: Copy Demo-application Docker image
   copy:
-    src: snorbu.se-demo-application-1.1.tar
-    dest: /opt/snorbu.se-demo-application-1.1.tar
+    src: snorbu.se-demo-application-1.2.tar
+    dest: /opt/snorbu.se-demo-application-1.2.tar
 
 - name: Load Demo-application into Docker
   docker_image:
     name: snorbu.se/demo-application
-    tag: '1.1'
+    tag: '1.2'
     source: load
     state: present
-    load_path: /opt/snorbu.se-demo-application-1.1.tar
+    load_path: /opt/snorbu.se-demo-application-1.2.tar
 
 - name: Install Docker-compose configuration
   template:

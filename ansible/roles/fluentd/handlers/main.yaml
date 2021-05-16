@@ -7,3 +7,8 @@
   systemd:
     name: myapp
     state: restarted
+
+- name: Restart Fluentd
+  systemd:
+    name: td-agent
+    state: restarted
